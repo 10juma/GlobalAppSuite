@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Desarrollamos software a la medida para todo tipo de empresas. Sistemas empresariales, apps móviles, páginas web y puntos de venta. Guadalajara, México." />
+<meta name="author" content="Global App Suite" />
+<meta property="og:title" content="Global App Suite — Software a la medida" />
+<meta property="og:description" content="Desarrollamos sistemas empresariales, apps móviles y portales web para todo tipo de empresas en México." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://globalappsuite.com.mx" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Global App Suite" />
+<meta name="twitter:description" content="Software a la medida para todo tipo de empresas. Guadalajara, México." />
+<title>Global App Suite — Software a la medida | Guadalajara, México</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F9F8F6;
+    --surface: #FFFFFF;
+    --surface2: #F2F1EF;
+    --border: rgba(0,0,0,0.08);
+    --border-med: rgba(0,0,0,0.15);
+    --border-dark: rgba(0,0,0,0.28);
+    --text: #111110;
+    --muted: #888680;
+    --muted2: #B8B6B0;
+    --accent: #1A1A18;
+    --accent-dim: rgba(0,0,0,0.05);
+    --mono: Arial, sans-serif;
+    --display: Arial, sans-serif;
+  }
+
+  html { background: var(--bg); color: var(--text); font-family: var(--display); scroll-behavior: smooth; }
+  body { min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(249,248,246,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: 0.02em; color: var(--text); text-decoration: none; }
+  .nav-logo img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 0.45rem;
+  }
+  .nav-logo span { color: var(--muted); font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-decoration: none; letter-spacing: 0.07em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .icon { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .nav-cta {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    background: var(--accent); color: #fff; font-weight: 500;
+    padding: 0.5rem 1.25rem; border-radius: 3px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 5rem;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .hero-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-label::before { content: ''; width: 18px; height: 1px; background: var(--muted2); display: inline-block; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 3.8vw, 3.6rem); font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.03em; color: var(--text); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; border-bottom: 3px solid var(--text); padding-bottom: 1px; }
+  .hero-sub { font-family: var(--mono); font-size: 13.5px; line-height: 1.75; color: var(--muted); max-width: 380px; }
+  .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: #fff; font-family: var(--mono);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 0.75rem 1.75rem; border-radius: 3px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-ghost {
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+    letter-spacing: 0.06em; text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-ghost::after { content: '→'; }
+
+  /* TERMINAL */
+  .terminal {
+    background: var(--surface); border: 1px solid var(--border-med);
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.05);
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 0.65rem 1rem; border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #FF5F57; } .dot-y { background: #FFBD2E; } .dot-g { background: #28CA42; }
+  .terminal-title { font-family: var(--mono); font-size: 11px; color: var(--muted2); margin-left: auto; }
+  .terminal-body { padding: 1.4rem; font-family: var(--mono); font-size: 12.5px; line-height: 2; background: #FAFAF8; }
+  .t-key { color: #3B6EB5; } .t-str { color: #2E7D4F; }
+  .t-bool { color: #B05C1A; } .t-num { color: #7B3FA0; } .t-muted { color: var(--muted); }
+
+  /* STATS */
+  .stats-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stats { padding: 2.5rem 3rem; display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1100px; margin: 0 auto; gap: 2rem; }
+  .stat { display: flex; flex-direction: column; gap: 0.3rem; }
+  .stat-num { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text); }
+  .stat-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.07em; }
+
+  /* SECTION SHARED */
+  .section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before { content: ''; width: 18px; height: 1px; background: var(--muted2); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  }
+  .service-card {
+    background: var(--surface); padding: 2rem 1.75rem;
+    transition: background 0.2s; display: flex; flex-direction: column; gap: 1rem;
+  }
+  .service-card:hover { background: var(--surface2); }
+  .service-num { font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+  .service-title { font-size: 17px; font-weight: 700; line-height: 1.2; color: var(--text); }
+  .service-desc { font-family: var(--mono); font-size: 12.5px; color: var(--muted); line-height: 1.75; flex: 1; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+  .tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
+    color: var(--text); background: var(--surface2);
+    border: 1px solid var(--border-med); padding: 3px 8px; border-radius: 3px;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { padding: 5rem 3rem; border-top: 1px solid var(--border); background: var(--surface); }
+  .portfolio-inner { max-width: 1100px; margin: 0 auto; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    border: 1px solid var(--border-med); border-radius: 6px; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--border-dark); transform: translateY(-2px); }
+  .project-header { padding: 1.5rem 1.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .project-type {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--muted2); text-transform: uppercase; margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .project-type::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--text); display: inline-block; }
+  .project-title { font-size: 16px; font-weight: 700; line-height: 1.25; color: var(--text); }
+  .project-body { padding: 1.25rem 1.5rem; }
+  .project-problem { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.75; margin-bottom: 0.75rem; }
+  .project-problem strong { color: var(--text); font-weight: 500; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .project-stack span {
+    font-family: var(--mono); font-size: 10px; color: var(--muted);
+    border: 1px solid var(--border-med); padding: 2px 8px; border-radius: 3px;
+  }
+
+  /* PROCESO */
+  .proceso { padding: 5rem 3rem; border-top: 1px solid var(--border); }
+  .proceso-inner { max-width: 1100px; margin: 0 auto; }
+  .proceso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .proceso-grid::before {
+    content: ''; position: absolute; top: 28px;
+    left: calc(12.5% + 12px); right: calc(12.5% + 12px);
+    height: 1px; background: var(--border-dark); z-index: 0;
+  }
+  .paso { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+  .paso-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid var(--border-dark); background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--text); margin-bottom: 1.25rem;
+  }
+  .paso-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+  .paso-desc { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+
+  /* INDUSTRIES */
+  .industries { padding: 4rem 3rem; border-top: 1px solid var(--border); }
+  .industries-inner { max-width: 1100px; margin: 0 auto; }
+  .industries-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .industry-pill {
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+    border: 1px solid var(--border-med); padding: 6px 14px; border-radius: 99px;
+    transition: border-color 0.2s, color 0.2s; cursor: default;
+  }
+  .industry-pill:hover { border-color: var(--text); color: var(--text); }
+
+  /* ABOUT */
+  .about { padding: 5rem 3rem; border-top: 1px solid var(--border); background: var(--surface); }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .about h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); }
+  .about h2 em { font-style: normal; border-bottom: 3px solid var(--text); }
+  .about-body { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.85; }
+  .about-body p + p { margin-top: 1rem; }
+  .stack-list { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-item {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    border: 1px solid var(--border-dark); padding: 4px 10px; border-radius: 3px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s; cursor: default;
+  }
+  .stack-item:hover { border-color: var(--text); color: var(--text); background: var(--accent-dim); }
+
+  /* CONTACT */
+  .contact { padding: 6rem 3rem; border-top: 1px solid var(--border); text-align: center; }
+  .contact-inner { max-width: 540px; margin: 0 auto; }
+  .contact h2 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--text); }
+  .contact h2 em { font-style: normal; border-bottom: 3px solid var(--text); }
+  .contact p { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em;
+    padding: 0.75rem 1.5rem; border: 1px solid var(--border-dark); border-radius: 3px;
+    color: var(--muted); text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .contact-link:hover { border-color: var(--text); color: var(--text); }
+  .contact-link.primary { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 500; }
+  .contact-link.primary:hover { opacity: 0.82; color: #fff; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface2);
+  }
+  .footer-logo { font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: var(--text); }
+  .footer-logo span { color: var(--muted); font-weight: 400; }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+  .footer-loc { font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); padding: 2rem 1.5rem; }
+    .section { padding: 3rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio { padding: 3rem 1.5rem; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .proceso { padding: 3rem 1.5rem; }
+    .proceso-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .proceso-grid::before { display: none; }
+    .industries { padding: 3rem 1.5rem; }
+    .about { padding: 3rem 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact { padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="favicon.png" alt="Global App Suite" />GlobalApp<span>Suite</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios"><span class="icon"><span aria-hidden="true">🛠</span>servicios</span></a></li>
+    <li><a href="#portafolio"><span class="icon"><span aria-hidden="true">📁</span>portafolio</span></a></li>
+    <li><a href="#nosotros"><span class="icon"><span aria-hidden="true">👥</span>nosotros</span></a></li>
+    <li><a href="#contacto"><span class="icon"><span aria-hidden="true">✉</span>contacto</span></a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta"><span class="icon"><span aria-hidden="true">💬</span>hablar con nosotros</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-label"><span aria-hidden="true">⚡</span> Software a medida</p>
+    <h1>Software que<br><em>resuelve</em><br>problemas reales.</h1>
+    <p class="hero-sub">Desarrollamos sistemas para todo tipo de empresas — desde startups hasta corporativos. Sin intermediarios, sin código genérico.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/527751051542?text=Hola%2C%20quiero%20agendar%20una%20llamada%20para%20mi%20proyecto." class="btn-primary" target="_blank" rel="noopener noreferrer"><span class="icon"><span aria-hidden="true">📅</span>Agendar llamada</span></a>
+      <a href="#portafolio" class="btn-ghost"><span class="icon"><span aria-hidden="true">👀</span>Ver proyectos</span></a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-title">proyecto.json</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-muted">{</span><br>
+      &nbsp;&nbsp;<span class="t-key">"empresa"</span><span class="t-muted">:</span> <span class="t-str">"Tu empresa, S.A."</span><span class="t-muted">,</span><br>
+      &nbsp;&nbsp;<span class="t-key">"industria"</span><span class="t-muted">:</span> <span class="t-str">"Cualquier sector"</span><span class="t-muted">,</span><br>
+      &nbsp;&nbsp;<span class="t-key">"stack"</span><span class="t-muted">:</span> <span class="t-muted">[</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"ASP.NET"</span><span class="t-muted">,</span> <span class="t-str">"Flutter"</span><span class="t-muted">,</span> <span class="t-str">"SQL Server"</span><br>
+      &nbsp;&nbsp;<span class="t-muted">],</span><br>
+      &nbsp;&nbsp;<span class="t-key">"entrega"</span><span class="t-muted">:</span> <span class="t-bool">true</span><span class="t-muted">,</span><br>
+      &nbsp;&nbsp;<span class="t-key">"soporte"</span><span class="t-muted">:</span> <span class="t-bool">true</span><span class="t-muted">,</span><br>
+      &nbsp;&nbsp;<span class="t-key">"semanas"</span><span class="t-muted">:</span> <span class="t-num">8</span><br>
+      <span class="t-muted">}</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats">
+    <div class="stat"><span class="stat-num">11+</span><span class="stat-label">años de experiencia</span></div>
+    <div class="stat"><span class="stat-num">15+</span><span class="stat-label">proyectos entregados</span></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">proyectos a medida</span></div>
+    <div class="stat"><span class="stat-num">GDL</span><span class="stat-label">Guadalajara, Jalisco</span></div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <p class="section-label"><span aria-hidden="true">🧩</span> Servicios</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <h3 class="service-title"><span aria-hidden="true">🏢</span> Software empresarial</h3>
+      <p class="service-desc">Sistemas internos, ERPs, portales de cliente y flujos de trabajo automatizados. Construidos para durar y escalar con tu empresa.</p>
+      <div class="service-tags"><span class="tag">ASP.NET</span><span class="tag">SQL Server</span><span class="tag">WinForms</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <h3 class="service-title"><span aria-hidden="true">🛍</span> Páginas web y e-commerce</h3>
+      <p class="service-desc">Sitios corporativos, landing pages y tiendas en línea. Diseño limpio, carga rápida y fácil de administrar.</p>
+      <div class="service-tags"><span class="tag">React</span><span class="tag">HTML/CSS</span><span class="tag">WordPress</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <h3 class="service-title"><span aria-hidden="true">📱</span> Aplicaciones móviles</h3>
+      <p class="service-desc">Apps multiplataforma para iOS y Android. Desde MVP hasta producto completo con backend, autenticación y notificaciones.</p>
+      <div class="service-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">REST API</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <h3 class="service-title"><span aria-hidden="true">💳</span> Puntos de venta</h3>
+      <p class="service-desc">Sistemas POS a medida con control de inventario, corte de caja, reportes y soporte para impresoras fiscales.</p>
+      <div class="service-tags"><span class="tag">WinForms</span><span class="tag">SQL Server</span><span class="tag">Flutter</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <h3 class="service-title"><span aria-hidden="true">🔗</span> Integraciones y APIs</h3>
+      <p class="service-desc">Conectamos tus sistemas con proveedores de pago, facturación electrónica CFDI, logística y más.</p>
+      <div class="service-tags"><span class="tag">CFDI 4.0</span><span class="tag">OpenPay</span><span class="tag">JWT</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <h3 class="service-title"><span aria-hidden="true">🧠</span> Consultoría tecnológica</h3>
+      <p class="service-desc">Análisis de procesos, selección de herramientas y hoja de ruta digital para empresas que quieren modernizarse sin riesgos.</p>
+      <div class="service-tags"><span class="tag">Diagnóstico</span><span class="tag">Arquitectura</span><span class="tag">Roadmap</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<div class="portfolio" id="portafolio">
+  <div class="portfolio-inner">
+    <p class="section-label"><span aria-hidden="true">📂</span> Portafolio</p>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">Aplicación Móvil · Transporte</p>
+          <h3 class="project-title">Control de Transporte de Personal</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-problem"><strong>Problema:</strong> Las empresas no tenían visibilidad en tiempo real de qué choferes estaban atendiendo sus servicios ni en qué estado se encontraban.</p>
+          <p class="project-problem"><strong>Solución:</strong> App móvil con seguimiento en tiempo real, asignación de servicios y panel de control para coordinadores.</p>
+          <div class="project-stack">
+            <span>Flutter</span><span>.NET API</span><span>SQL Server</span><span>GPS en tiempo real</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">Portal Web · Inmobiliaria</p>
+          <h3 class="project-title">Administración de Condominios</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-problem"><strong>Problema:</strong> Los administradores gestionaban cuotas, mantenimientos y residentes con hojas de cálculo y procesos manuales.</p>
+          <p class="project-problem"><strong>Solución:</strong> Portal web centralizado con gestión de residentes, cuotas, reportes financieros y comunicación interna.</p>
+          <div class="project-stack">
+            <span>ASP.NET</span><span>SQL Server</span><span>Reportes</span><span>Multi-condominio</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">Aplicación Móvil · Eventos</p>
+          <h3 class="project-title">Gestión de Renta de Equipo para Eventos</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-problem"><strong>Problema:</strong> Empresas de renta para fiestas llevaban pedidos, inventario y finanzas en Excel, generando errores y pérdidas de control.</p>
+          <p class="project-problem"><strong>Solución:</strong> App completa con catálogo de artículos, pedidos, control de inventario, gastos e ingresos en tiempo real.</p>
+          <div class="project-stack">
+            <span>Flutter</span><span>Dart</span><span>SQL Server</span><span>.NET API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESO -->
+<div class="proceso" id="proceso">
+  <div class="proceso-inner">
+    <p class="section-label"><span aria-hidden="true">⚙</span> Cómo trabajamos</p>
+    <div class="proceso-grid">
+      <div class="paso">
+        <div class="paso-num">01</div>
+        <h4 class="paso-title">🔍 Diagnóstico</h4>
+        <p class="paso-desc">Entendemos tu operación, tus procesos actuales y los puntos de dolor. Sin tecnicismos, sin compromiso.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">02</div>
+        <h4 class="paso-title">🧾 Propuesta</h4>
+        <p class="paso-desc">Definimos alcance, tecnología, tiempos y costo. Todo por escrito, sin sorpresas a mitad del proyecto.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">03</div>
+        <h4 class="paso-title">💻 Desarrollo</h4>
+        <p class="paso-desc">Construimos por etapas con entregas periódicas. Tú ves el avance real desde la primera semana.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">04</div>
+        <h4 class="paso-title">🚀 Entrega y soporte</h4>
+        <p class="paso-desc">Capacitamos a tu equipo y nos quedamos disponibles. El proyecto no termina en la entrega.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRIAS -->
+<div class="industries">
+  <div class="industries-inner">
+    <p class="section-label"><span aria-hidden="true">🏭</span> Industrias que atendemos</p>
+    <div class="industries-grid">
+      <span class="industry-pill">Manufactura</span>
+      <span class="industry-pill">Comercio minorista</span>
+      <span class="industry-pill">Despachos legales</span>
+      <span class="industry-pill">Restaurantes y food service</span>
+      <span class="industry-pill">Salud y clínicas</span>
+      <span class="industry-pill">Logística y transporte</span>
+      <span class="industry-pill">Construcción</span>
+      <span class="industry-pill">Educación</span>
+      <span class="industry-pill">Servicios financieros</span>
+      <span class="industry-pill">Startups</span>
+      <span class="industry-pill">Gobierno</span>
+      <span class="industry-pill">Eventos y renta</span>
+    </div>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<div class="about" id="nosotros">
+  <div class="about-inner">
+    <div>
+      <p class="section-label"><span aria-hidden="true">👨‍💻</span> Nosotros</p>
+      <h2>Ingeniería<br>sin <em>adornos.</em></h2>
+    </div>
+    <div>
+      <div class="about-body">
+        <p>Somos un equipo con más de una década resolviendo problemas reales en empresas de todos los tamaños — desde negocios locales hasta corporativos con múltiples divisiones en México.</p>
+        <p>Desarrollamos software administrativo, financiero y operativo: desde control de inventarios y facturación electrónica, hasta módulos de conciliación, cuentas por cobrar y reportes para toma de decisiones.</p>
+        <p>No vendemos proyectos genéricos. Analizamos tu operación, diseñamos la arquitectura correcta y entregamos software que tu equipo puede usar desde el primer día.</p>
+      </div>
+      <div class="stack-list">
+        <span class="stack-item">.NET / ASP.NET</span>
+        <span class="stack-item">Flutter</span>
+        <span class="stack-item">SQL Server</span>
+        <span class="stack-item">React</span>
+        <span class="stack-item">JavaScript</span>
+        <span class="stack-item">Python</span>
+        <span class="stack-item">WordPress</span>
+        <span class="stack-item">REST APIs</span>
+        <span class="stack-item">CFDI 4.0 / SAT</span>
+        <span class="stack-item">OpenPay / Stripe</span>
+        <span class="stack-item">JWT / OAuth</span>
+        <span class="stack-item">Crystal Reports</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <p class="section-label" style="justify-content:center; margin-bottom:1.5rem;"><span aria-hidden="true">✉</span> Contacto</p>
+    <h2>¿Tienes un <em>proyecto?</em></h2>
+    <p>Cuéntanos qué necesitas. Respondemos en menos de 24 horas en días hábiles.</p>
+    <div class="contact-links">
+      <a href="mailto:contacto@globalappsuite.com.mx" class="contact-link primary"><span aria-hidden="true">✉</span> contacto@globalappsuite.com.mx</a>
+      <a href="https://wa.me/527751051542" class="contact-link"><span aria-hidden="true">💬</span> WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">GlobalApp<span>Suite</span></span>
+  <span class="footer-copy">© 2026 Global App Suite · Todos los derechos reservados</span>
+  <span class="footer-loc">📍 Guadalajara, Jal., México</span>
+</footer>
+
+</body>
+</html>
