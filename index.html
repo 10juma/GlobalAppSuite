@@ -269,6 +269,9 @@
     .services-grid { grid-template-columns: 1fr; }
     .portfolio { padding: 3rem 1.5rem; }
     .portfolio-grid { grid-template-columns: 1fr; }
+    .productos { padding: 3rem 1.5rem; }
+    .producto-card { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem; }
+    .productos-intro { margin-top: -1rem; }
     .proceso { padding: 3rem 1.5rem; }
     .proceso-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .proceso-grid::before { display: none; }
@@ -279,9 +282,27 @@
     footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   }
 
-  /* Tarjeta de portafolio enlazada */
-  a.project-card { display: block; color: inherit; text-decoration: none; }
-  .project-link { display: inline-block; margin-top: 1rem; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--text); }
+  /* PRODUCTOS PROPIOS */
+  .productos { padding: 5rem 3rem; border-top: 1px solid var(--border); }
+  .productos-inner { max-width: 1100px; margin: 0 auto; }
+  .productos-intro { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.75; max-width: 640px; margin: -1.5rem 0 2.5rem; }
+  .producto-card {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center;
+    border: 1px solid var(--border-med); border-radius: 6px; padding: 2rem;
+    background: var(--surface); transition: border-color 0.2s, transform 0.2s;
+  }
+  .producto-card:hover { border-color: var(--border-dark); transform: translateY(-2px); }
+  .producto-logo { width: 72px; height: 72px; border-radius: 16px; }
+  .producto-nombre { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin: 0.2rem 0 0.5rem; }
+  .producto-desc { font-family: var(--mono); font-size: 12.5px; color: var(--muted); line-height: 1.75; max-width: 620px; }
+  .producto-acciones { display: flex; flex-direction: column; gap: 0.75rem; align-items: stretch; text-align: center; }
+  .producto-acciones .btn-primary, .producto-acciones .btn-sec { display: block; white-space: nowrap; }
+  .btn-sec {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--text);
+    padding: 0.7rem 1.75rem; border: 1px solid var(--border-dark); border-radius: 3px; text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-sec:hover { border-color: var(--text); }
 
   /* Formulario de contacto */
   .contact-inner { max-width: 640px; }
@@ -310,6 +331,7 @@
   <ul class="nav-links">
     <li><a href="#servicios"><span class="icon"><span aria-hidden="true">🛠</span>servicios</span></a></li>
     <li><a href="#portafolio"><span class="icon"><span aria-hidden="true">📁</span>portafolio</span></a></li>
+    <li><a href="#productos"><span class="icon"><span aria-hidden="true">🧩</span>productos</span></a></li>
     <li><a href="#nosotros"><span class="icon"><span aria-hidden="true">👥</span>nosotros</span></a></li>
     <li><a href="#contacto"><span class="icon"><span aria-hidden="true">✉</span>contacto</span></a></li>
   </ul>
@@ -426,23 +448,32 @@
           </div>
         </div>
       </div>
-      <a class="project-card" href="/revendo/" target="_blank" rel="noopener">
-        <div class="project-header">
-          <p class="project-type">Producto propio · SaaS · Web y móvil</p>
-          <h3 class="project-title">Revendo: inventario, ventas y compras para tu negocio</h3>
-        </div>
-        <div class="project-body">
-          <p class="project-problem"><strong>Problema:</strong> Quien compra, produce o revende productos lleva inventario, ventas y compras en libretas y WhatsApp, sin saber cuánto tiene ni cuánto gana.</p>
-          <p class="project-problem"><strong>Solución:</strong> Plataforma web y app móvil con inventario por almacén, ventas, compras, producción con recetas, rutas de reparto y reportes. 15 días gratis.</p>
-          <div class="project-stack">
-            <span>ASP.NET Core</span><span>Flutter</span><span>SQL Server</span><span>Stripe</span>
-          </div>
-          <span class="project-link">Conocer Revendo ↗</span>
-        </div>
-      </a>
     </div>
   </div>
 </div>
+
+<!-- PRODUCTOS PROPIOS -->
+<section class="productos" id="productos">
+  <div class="productos-inner">
+    <p class="section-label"><span aria-hidden="true">🧩</span> Productos propios</p>
+    <p class="productos-intro">Además de software a la medida, desarrollamos productos listos para usar. Te registras, los pruebas y empiezas hoy mismo, sin proyecto de por medio.</p>
+    <div class="producto-card">
+      <img class="producto-logo" src="/revendo/img/icono-192.png" width="72" height="72" alt="" />
+      <div>
+        <p class="project-type">SaaS · Web y app móvil</p>
+        <h3 class="producto-nombre">Revendo</h3>
+        <p class="producto-desc">Inventario por almacén, ventas, compras, producción con recetas, rutas de reparto y reportes para negocios que compran, producen o revenden productos. 15 días gratis, después $49 MXN al mes.</p>
+        <div class="project-stack">
+          <span>ASP.NET Core</span><span>Flutter</span><span>SQL Server</span><span>Stripe</span>
+        </div>
+      </div>
+      <div class="producto-acciones">
+        <a class="btn-primary" href="/revendo/" target="_blank" rel="noopener">Conocer Revendo ↗</a>
+        <a class="btn-sec" href="https://revendo.globalappsuite.com.mx/Account/Register" target="_blank" rel="noopener">Probar gratis</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESO -->
 <div class="proceso" id="proceso">
