@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pitazo — Gestión de ligas de fútbol 7 | Web y app móvil</title>
+<meta name="description" content="Plataforma web y app móvil para gestionar ligas de fútbol 7. Partidos en vivo, equipos, árbitros, reservas de cancha, finanzas y más. Pruébalo gratis." />
+<meta name="author" content="Global App Suite" />
+<meta name="theme-color" content="#1a56db" />
+<link rel="canonical" href="https://www.globalappsuite.com.mx/pitazo/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:site_name" content="Pitazo" />
+<meta property="og:title" content="Pitazo — Tu liga, tu equipo, todo en un solo lugar" />
+<meta property="og:description" content="Gestiona ligas de fútbol 7 desde la web y la app móvil. Partidos en vivo, tablas, árbitros, reservas y más." />
+<meta property="og:url" content="https://www.globalappsuite.com.mx/pitazo/" />
+<meta property="og:image" content="https://www.globalappsuite.com.mx/pitazo/img/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pitazo — Tu liga, tu equipo, todo en un solo lugar" />
+<meta name="twitter:description" content="Gestiona ligas de fútbol 7 desde la web y la app móvil." />
+<meta name="twitter:image" content="https://www.globalappsuite.com.mx/pitazo/img/og.jpg" />
+
+<link rel="icon" type="image/png" href="/pitazo/img/favicon.png" />
+<link rel="apple-touch-icon" href="/pitazo/img/apple-touch-icon.png" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #f0f4ff;
+    --surface:     #ffffff;
+    --text:        #0f172a;
+    --muted:       #4b5880;
+    --border:      #dde3f0;
+    --azul:        #1a56db;
+    --azul-dark:   #1240a8;
+    --azul-deep:   #0c1f5c;
+    --azul-soft:   #eff6ff;
+    --radius:      14px;
+    --sombra:      0 30px 70px -25px rgba(12, 31, 92, .32);
+    --fuente:      ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: var(--fuente);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .contenedor { width: min(1160px, 100% - 2.5rem); margin-inline: auto; }
+  :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
+
+  /* ── Botones ───────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .95rem 1.6rem;
+    border-radius: 999px;
+    background: var(--azul);
+    color: #fff;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid var(--azul);
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    box-shadow: 0 10px 24px -10px rgba(26, 86, 219, .55);
+  }
+  .btn:hover { background: var(--azul-dark); transform: translateY(-2px); box-shadow: 0 16px 28px -12px rgba(26, 86, 219, .65); }
+  .btn:active { transform: translateY(0); }
+  .btn--claro { background: transparent; color: var(--text); border-color: var(--border); box-shadow: none; }
+  .btn--claro:hover { background: #fff; border-color: #bcc6e0; box-shadow: none; }
+  .btn--blanco { background: #fff; color: var(--azul-deep); border-color: #fff; box-shadow: none; }
+  .btn--blanco:hover { background: var(--azul-soft); box-shadow: none; }
+  .btn--sm { padding: .6rem 1.15rem; font-size: .9rem; }
+
+  /* ── Encabezado ────────────────────────────────────────── */
+  .encabezado {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(240, 244, 255, .9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .encabezado .contenedor { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 1rem; }
+  .marca { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -.03em; color: var(--azul-deep); }
+  .marca span { color: var(--azul); }
+  .marca img { width: 34px; height: 34px; }
+  .menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  .menu a { text-decoration: none; font-size: .95rem; color: var(--muted); font-weight: 500; transition: color .15s; }
+  .menu a:hover { color: var(--text); }
+  .acciones { display: flex; align-items: center; gap: .75rem; }
+  .enlace-sesion { font-size: .92rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+  .enlace-sesion:hover { color: var(--text); }
+
+  /* ── Portada ───────────────────────────────────────────── */
+  .portada {
+    padding: 4.5rem 0 3.5rem;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(26, 86, 219, .14), transparent 70%),
+      radial-gradient(700px 380px at 0% 20%, rgba(26, 86, 219, .07), transparent 70%);
+  }
+  .portada-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+  .etiqueta {
+    display: inline-block;
+    padding: .35rem .85rem;
+    background: var(--azul-soft);
+    color: var(--azul-dark);
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+    margin-bottom: 1.25rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); line-height: 1.05; letter-spacing: -.04em; font-weight: 900; text-transform: uppercase; }
+  h1 em { font-style: normal; color: var(--azul); }
+  .portada p.sub { margin-top: 1.25rem; font-size: 1.15rem; color: var(--muted); max-width: 36rem; }
+  .portada .botones { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+  .nota-confianza { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; }
+  .nota-confianza span { font-size: .86rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+  .nota-confianza span::before { content: "✓"; color: var(--azul); font-weight: 800; }
+
+  .marco {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(12, 31, 92, .12);
+    box-shadow: var(--sombra);
+    background: #fff;
+  }
+  .marco img { width: 100%; }
+  .portada .marco { animation: entrada .9s cubic-bezier(.2, .7, .2, 1) both; }
+
+  /* ── Para quién ────────────────────────────────────────── */
+  .para-quien { padding: 2rem 0; border-block: 1px solid var(--border); background: var(--surface); }
+  .para-quien .contenedor { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .5rem 2rem; }
+  .para-quien strong { font-size: .9rem; color: var(--muted); white-space: nowrap; }
+  .para-quien ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+  .para-quien li { padding: .4rem .9rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); font-size: .9rem; color: var(--muted); }
+
+  /* ── Secciones ─────────────────────────────────────────── */
+  section { padding: 5rem 0; }
+  .titulo-seccion { text-align: center; max-width: 44rem; margin: 0 auto 3rem; }
+  .titulo-seccion .etiqueta { margin-bottom: 1rem; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 800; }
+  .titulo-seccion p { margin-top: .9rem; color: var(--muted); font-size: 1.08rem; }
+
+  /* Dolores */
+  .dolores { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+  .tarjeta {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+  }
+  .tarjeta h3 { font-size: 1.08rem; line-height: 1.3; letter-spacing: -.01em; margin-bottom: .5rem; }
+  .tarjeta p { color: var(--muted); font-size: .97rem; }
+  .icono-emoji { font-size: 1.7rem; margin-bottom: .75rem; display: block; }
+
+  /* Funciones (filas alternadas) */
+  .funciones { background: var(--surface); border-block: 1px solid var(--border); }
+  .fila { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; padding: 2.25rem 0; }
+  .fila + .fila { border-top: 1px solid var(--border); }
+  .fila h3 { font-size: clamp(1.4rem, 2.8vw, 1.9rem); line-height: 1.2; letter-spacing: -.025em; margin-bottom: .75rem; }
+  .fila p { color: var(--muted); font-size: 1.05rem; }
+  .fila ul { list-style: none; margin-top: 1.1rem; display: grid; gap: .6rem; }
+  .fila li { position: relative; padding-left: 1.8rem; font-size: .98rem; }
+  .fila li::before {
+    content: "✓";
+    position: absolute; left: 0; top: .05rem;
+    width: 1.25rem; height: 1.25rem;
+    border-radius: 50%;
+    background: var(--azul-soft); color: var(--azul);
+    font-size: .75rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Roles */
+  .roles-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  .rol-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex; gap: 1.1rem; align-items: flex-start;
+  }
+  .rol-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.35rem; flex-shrink: 0; overflow: hidden; background: var(--azul-soft);
+  }
+  .rol-icon img { width: 100%; height: 100%; object-fit: cover; }
+  .rol-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .3rem; }
+  .rol-card p { color: var(--muted); font-size: .93rem; }
+
+  /* App móvil */
+  .app {
+    background: linear-gradient(135deg, var(--azul-deep), #163080 55%, var(--azul));
+    color: #fff;
+  }
+  .app .contenedor { display: grid; gap: 1.75rem; grid-template-columns: 1fr; align-items: center; }
+  .app h2 { color: #fff; }
+  .app p { color: rgba(255, 255, 255, .85); font-size: 1.08rem; margin-top: 1rem; max-width: 36rem; }
+  .app ul { list-style: none; margin-top: 1.4rem; display: grid; gap: .6rem; }
+  .app li { padding-left: 1.7rem; position: relative; color: #fff; }
+  .app li::before { content: "✓"; position: absolute; left: 0; font-weight: 800; color: #93c5fd; }
+  .app-tiendas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .tienda-btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: .65rem 1.2rem;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 12px;
+    color: #fff; text-decoration: none;
+    font-size: .9rem; font-weight: 600;
+    transition: background .18s;
+  }
+  .tienda-btn:hover { background: rgba(255, 255, 255, .22); }
+  .tienda-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+  /* Precio */
+  .precio-caja {
+    max-width: 540px; margin: 0 auto;
+    background: var(--surface);
+    border: 2px solid var(--azul);
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    text-align: center;
+    box-shadow: var(--sombra);
+  }
+  .precio-caja .cantidad { font-size: 3.4rem; font-weight: 900; letter-spacing: -.05em; line-height: 1; }
+  .precio-caja .cantidad small { font-size: 1.05rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .precio-caja .gratis { display: inline-block; margin: .9rem 0 1.4rem; background: var(--azul-soft); color: var(--azul-dark); border-radius: 999px; padding: .3rem .9rem; font-weight: 700; font-size: .9rem; }
+  .precio-caja ul { list-style: none; text-align: left; display: grid; gap: .6rem; margin-bottom: 1.8rem; }
+  .precio-caja li { padding-left: 1.7rem; position: relative; font-size: .98rem; }
+  .precio-caja li::before { content: "✓"; position: absolute; left: 0; color: var(--azul); font-weight: 800; }
+  .precio-caja .btn { width: 100%; }
+  .letra-chica { margin-top: 1rem; font-size: .83rem; color: var(--muted); }
+
+  /* Preguntas */
+  .preguntas { max-width: 780px; margin: 0 auto; display: grid; gap: .75rem; }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  summary {
+    cursor: pointer; list-style: none;
+    padding: 1.1rem 1.4rem;
+    font-weight: 700; font-size: 1.02rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 1.5rem; line-height: 1; color: var(--azul); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 1.4rem 1.2rem; color: var(--muted); }
+
+  /* Cierre */
+  .cierre { text-align: center; background: var(--azul-deep); color: #fff; }
+  .cierre h2 { color: #fff; }
+  .cierre p { margin: 1rem auto 2rem; color: rgba(255, 255, 255, .8); max-width: 34rem; font-size: 1.08rem; }
+
+  /* Pie */
+  .pie { padding: 2.5rem 0; font-size: .9rem; color: var(--muted); }
+  .pie .contenedor { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; }
+  .pie nav { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
+  .pie a { text-decoration: none; }
+  .pie a:hover { text-decoration: underline; }
+
+  /* Barra fija móvil */
+  .barra-movil {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    transform: translateY(110%);
+    transition: transform .3s ease;
+  }
+  .barra-movil.visible { transform: translateY(0); }
+  .barra-movil .btn { width: 100%; padding: .85rem 1rem; }
+
+  /* Scroll */
+  .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+  .revelar.visible { opacity: 1; transform: none; }
+  @keyframes entrada { from { opacity: 0; transform: translateY(28px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .revelar { opacity: 1; transform: none; transition: none; }
+    .portada .marco { animation: none; }
+    .btn, .barra-movil { transition: none; }
+  }
+
+  /* ── Pantallas medianas y grandes ─────────────────────── */
+  @media (min-width: 640px) {
+    .roles-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 720px) {
+    .dolores { grid-template-columns: repeat(3, 1fr); }
+    .roles-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .portada { padding: 5.5rem 0 4.5rem; }
+    .portada-grid { grid-template-columns: 1fr 1.15fr; }
+    .fila { grid-template-columns: 1fr 1.15fr; gap: 3.5rem; padding: 3rem 0; }
+    .fila--invertida .fila-texto { order: 2; }
+    .app .contenedor { grid-template-columns: 1.1fr .9fr; gap: 3rem; }
+    .barra-movil { display: none; }
+    .roles-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 899px) {
+    .menu { display: none; }
+    .enlace-sesion { display: none; }
+    section { padding: 3.75rem 0; }
+    .pie { padding-bottom: 5.5rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="marca" href="#inicio" aria-label="Pitazo, ir al inicio">
+      <img src="/pitazo/img/favicon.png" width="34" height="34" alt="" />
+      PITA<span>ZO</span>
+    </a>
+    <ul class="menu">
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#roles">Para quién</a></li>
+      <li><a href="#app">App móvil</a></li>
+      <li><a href="#precio">Precio</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
+    </ul>
+    <div class="acciones">
+      <a class="enlace-sesion" href="https://pitazo.globalappsuite.com.mx/Account/Login">Iniciar sesión</a>
+      <a class="btn btn--sm" href="https://pitazo.globalappsuite.com.mx/Account/Register">Empieza gratis</a>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ═════════ PORTADA ═════════ -->
+  <div class="portada">
+    <div class="contenedor portada-grid">
+      <div>
+        <span class="etiqueta">Para complejos deportivos y ligas de fútbol 7</span>
+        <h1>Tu liga.<br>Tu equipo.<br><em>Todo en un solo lugar.</em></h1>
+        <p class="sub">Pitazo es la plataforma web y app móvil para gestionar tu torneo de principio a fin: partidos, equipos, árbitros, reservas, finanzas y más.</p>
+        <div class="botones">
+          <a class="btn" href="https://pitazo.globalappsuite.com.mx/Account/Register">Empieza gratis</a>
+          <a class="btn btn--claro" href="#funciones">Ver cómo funciona</a>
+        </div>
+        <div class="nota-confianza">
+          <span>Accede desde cualquier lugar</span>
+          <span>Web y app móvil (iOS y Android)</span>
+          <span>Datos siempre sincronizados</span>
+        </div>
+      </div>
+      <div class="marco">
+        <img src="/pitazo/img/hero.png"
+             width="1200" height="800" fetchpriority="high" decoding="async"
+             alt="Panel de Pitazo mostrando el dashboard con ligas activas, próximos partidos y resultado en vivo" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ PARA QUIÉN ═════════ -->
+  <div class="para-quien">
+    <div class="contenedor">
+      <strong>Hecho para:</strong>
+      <ul>
+        <li>Complejos deportivos</li>
+        <li>Ligas amateurs</li>
+        <li>Ligas semi-profesionales</li>
+        <li>Torneos empresariales</li>
+        <li>Canchas de fútbol 7</li>
+        <li>Organizadores independientes</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═════════ PROBLEMA ═════════ -->
+  <section>
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <h2>¿Te suena familiar?</h2>
+        <p>Organizar una liga de fútbol 7 es más trabajo de lo que parece cuando todo está en Excel, WhatsApp y papel.</p>
+      </div>
+      <div class="dolores">
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">📋</span>
+          <h3>"Los resultados los capturo a mano y siempre hay errores"</h3>
+          <p>Con Pitazo, el árbitro captura goles, tarjetas y penales desde su celular. La tabla se actualiza sola, en tiempo real.</p>
+        </div>
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">💬</span>
+          <h3>"Aviso los partidos por WhatsApp y no todos se enteran"</h3>
+          <p>Envía comunicados a todos los equipos de tu liga desde un solo lugar. Cada jugador lo recibe en la app y en su correo.</p>
+        </div>
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">💸</span>
+          <h3>"No sé quién me debe ni cuánto llevo cobrado"</h3>
+          <p>Registra inscripciones, cuotas y pagos por equipo. Pitazo te dice quién está al corriente y quién adeuda en segundos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ FUNCIONES ═════════ -->
+  <section class="funciones" id="funciones">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Todo lo que necesitas</span>
+        <h2>La plataforma completa para tu liga</h2>
+        <p>Sin módulos extra ni precios escondidos: todo viene incluido desde el primer día.</p>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>Partidos en vivo, minuto a minuto</h3>
+          <p>El árbitro captura cada evento desde su celular: goles, tarjetas, penales y cambios. Jugadores y managers ven el marcador en tiempo real, sin que nadie tenga que avisar nada.</p>
+          <ul>
+            <li>Cronómetro real con control de inicio, pausa y fin</li>
+            <li>Goles, tarjetas amarillas y rojas, penales, cambios</li>
+            <li>Página pública con el marcador, accesible sin login</li>
+            <li>Notificaciones push automáticas en cada evento</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/pitazo/img/envivo.jpg"
+               width="1200" height="800" loading="lazy" decoding="async"
+               alt="Pantalla de partido en vivo con el marcador en tiempo real, goles y eventos del partido" />
+        </div>
+      </div>
+
+      <div class="fila fila--invertida revelar">
+        <div class="fila-texto">
+          <h3>Calendarios que se organizan solos</h3>
+          <p>Crea tu temporada con el formato que necesitas: Round Robin, eliminación directa, grupos con playoffs, o la combinación que quieras. El calendario se genera automáticamente y se puede ajustar arrastrando.</p>
+          <ul>
+            <li>Drag & drop: mueve un partido y los demás se recorren</li>
+            <li>Asigna cancha y árbitro desde el mismo lugar</li>
+            <li>Deshacer cambios con un clic</li>
+            <li>Vista semanal y mensual para cada rol</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/pitazo/img/calendario.jpg"
+               width="1200" height="800" loading="lazy" decoding="async"
+               alt="Calendario de partidos con vista mensual y controles de drag and drop" />
+        </div>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>Equipos, jugadores y estadísticas</h3>
+          <p>Cada equipo tiene su plantilla completa con ficha por jugador: goles, asistencias, tarjetas, partidos jugados y más. Todo se actualiza automáticamente con cada partido.</p>
+          <ul>
+            <li>Confirmación de asistencia antes de cada partido</li>
+            <li>Alineación táctica visual con arrastre en la cancha</li>
+            <li>Certificados digitales generados al final de la temporada</li>
+            <li>Control de sanciones y suspensiones acumuladas</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/pitazo/img/equipos.jpg"
+               width="1200" height="800" loading="lazy" decoding="async"
+               alt="Pantalla de equipos con lista de jugadores, estadísticas y posición en la tabla" />
+        </div>
+      </div>
+
+      <div class="fila fila--invertida revelar">
+        <div class="fila-texto">
+          <h3>Canchas, reservas y disponibilidad</h3>
+          <p>Define tus canchas con sus horarios disponibles. El sistema reserva automáticamente cuando se programa un partido, y tus clientes pueden ver la disponibilidad en tiempo real.</p>
+          <ul>
+            <li>Calendario interactivo por cancha</li>
+            <li>Reservas con estado: programada, pagada, cancelada</li>
+            <li>Evita conflictos de horario automáticamente</li>
+            <li>Resumen de ocupación por día y por semana</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/pitazo/img/reservas.jpg"
+               width="1200" height="800" loading="lazy" decoding="async"
+               alt="Pantalla de reservas de cancha con calendario de disponibilidad" />
+        </div>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>Finanzas claras, sin hojas de cálculo</h3>
+          <p>Registra ingresos y gastos de tu liga: inscripciones, cuotas de equipos, reservas y gastos de operación. Ve de un vistazo quién debe, cuánto has cobrado y cuál es el balance.</p>
+          <ul>
+            <li>Cuotas por equipo o por jugador, con vencimiento</li>
+            <li>Registro de pagos con comprobante</li>
+            <li>Reportes de ingresos por temporada o por fecha</li>
+            <li>Portal financiero para managers: ven sus propios pagos</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/pitazo/img/finanzas.jpg"
+               width="1200" height="800" loading="lazy" decoding="async"
+               alt="Pantalla de finanzas con resumen de ingresos, gastos y cuotas pendientes" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═════════ GRÁFICO FUNCIONES ═════════ -->
+  <section style="padding-top:0">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Todo en un vistazo</span>
+        <h2>Una plataforma para cada persona en tu liga</h2>
+        <p>Administradores, staff, árbitros, managers, jugadores y patrocinadores, cada uno con su propio acceso y funciones.</p>
+      </div>
+      <div class="marco revelar" style="max-width:900px;margin:0 auto;">
+        <img src="/pitazo/img/grafico.png"
+             width="1800" height="900" loading="lazy" decoding="async"
+             alt="Infografía con todas las funciones de Pitazo organizadas por rol: Admins, Árbitros, Managers, Jugadores, Patrocinadores" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ ROLES ═════════ -->
+  <section id="roles">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Una plataforma, todos los roles</span>
+        <h2>Cada quien entra a lo suyo</h2>
+        <p>Pitazo tiene un portal personalizado para cada persona involucrada en tu liga. Todos con su propia vista, desde la web o la app.</p>
+      </div>
+      <div class="roles-grid">
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/pub-admin.png" alt="" /></div>
+          <div>
+            <h3>Administrador</h3>
+            <p>Control total de la liga: temporadas, equipos, partidos, árbitros, finanzas, comunicados y configuración.</p>
+          </div>
+        </div>
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/pub-staff.png" alt="" /></div>
+          <div>
+            <h3>Staff</h3>
+            <p>Operación del día a día: partidos, reservas, canchas y comunicados sin acceso a configuración ni finanzas.</p>
+          </div>
+        </div>
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/pub-arbitros.png" alt="" /></div>
+          <div>
+            <h3>Árbitro</h3>
+            <p>Captura el partido en vivo desde su celular: goles, tarjetas, penales y cambios. Consulta su historial y evaluaciones.</p>
+          </div>
+        </div>
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/pub-manager.png" alt="" /></div>
+          <div>
+            <h3>Manager / Capitán</h3>
+            <p>Gestiona su equipo: confirma asistencias, define la alineación, sigue los pagos de sus jugadores y ve estadísticas.</p>
+          </div>
+        </div>
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/app.png" alt="" /></div>
+          <div>
+            <h3>Jugador</h3>
+            <p>Consulta sus partidos, confirma asistencia, revisa sus estadísticas, ve sus pagos y recibe comunicados de su equipo.</p>
+          </div>
+        </div>
+
+        <div class="rol-card revelar">
+          <div class="rol-icon"><img src="/pitazo/img/pub-patrocinador.png" alt="" /></div>
+          <div>
+            <h3>Patrocinador</h3>
+            <p>Portal exclusivo con métricas de exposición de su marca, estadísticas de vistas por liga y acceso a sus facturas.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ APP MÓVIL ═════════ -->
+  <section class="app" id="app">
+    <div class="contenedor">
+      <div class="revelar">
+        <h2>Y también en tu celular</h2>
+        <p>Toda la plataforma, disponible en iOS y Android. Jugadores confirman asistencia, managers ven su equipo y árbitros capturan el partido, todo desde la app.</p>
+        <ul>
+          <li>Notificaciones push para cada evento importante</li>
+          <li>Marcador en vivo desde cualquier lugar</li>
+          <li>Face ID y huella dactilar para entrar sin contraseña</li>
+          <li>Soporte para múltiples ligas con el mismo correo</li>
+        </ul>
+        <div class="app-tiendas">
+          <a class="tienda-btn" href="https://apps.apple.com/mx/app/pitazo" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>
+          <a class="tienda-btn" href="https://play.google.com/store/apps/details?id=com.globalappsuite.pitazo" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.18 23.76c.35.2.76.21 1.12.01L16.76 12 12.27 7.5 3.18 23.76zm15.66-12.89l-2.94-1.67-4.78 4.8 4.78 4.79 2.96-1.68a1.89 1.89 0 0 0 0-3.24zM2.54.24C2.2.44 2 .8 2 1.22v21.56c0 .42.2.78.54.98L14.1 12 2.54.24zm9.73 11.09L3.3.27l-.12-.03 8.58 9.67 2.41-1.37L12.27 11.33z"/></svg>
+            Google Play
+          </a>
+        </div>
+      </div>
+      <div class="marco revelar">
+        <img src="/pitazo/img/app.png"
+             width="800" height="1100" loading="lazy" decoding="async"
+             alt="App de Pitazo en iPhone mostrando el marcador en vivo y el dashboard del jugador" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ PRECIO ═════════ -->
+  <section id="precio">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Precio claro</span>
+        <h2>Un solo plan, todo incluido</h2>
+        <p>Sin cobros por número de equipos, jugadores o partidos. Paga uno, usa todo.</p>
+      </div>
+      <div class="precio-caja revelar">
+        <div class="cantidad">Consulta <small>nuestros planes</small></div>
+        <span class="gratis">Prueba gratuita disponible</span>
+        <ul>
+          <li>Temporadas ilimitadas con cualquier formato</li>
+          <li>Partidos en vivo con cronómetro real</li>
+          <li>App móvil para iOS y Android incluida</li>
+          <li>Portales para árbitros, managers y jugadores</li>
+          <li>Reservas de cancha con calendario interactivo</li>
+          <li>Finanzas: cuotas, pagos y reportes</li>
+          <li>Comunicados, certificados y patrocinadores</li>
+          <li>Soporte y centro de ayuda integrado</li>
+        </ul>
+        <a class="btn" href="https://pitazo.globalappsuite.com.mx/Account/Register">Empieza gratis →</a>
+        <p class="letra-chica">¿Tienes preguntas antes de registrarte? <a href="#contacto" style="color:var(--azul);font-weight:600">Escríbenos aquí.</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ PREGUNTAS ═════════ -->
+  <section id="preguntas" style="padding-top:0">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="preguntas revelar">
+        <details>
+          <summary>¿Para cuántos equipos o jugadores funciona Pitazo?</summary>
+          <p>No hay un límite fijo. Pitazo está diseñado para ligas de cualquier tamaño, desde torneos pequeños de 8 equipos hasta complejos con múltiples ligas corriendo al mismo tiempo.</p>
+        </details>
+        <details>
+          <summary>¿Puedo tener varias ligas con el mismo acceso?</summary>
+          <p>Sí. Un mismo correo puede administrar múltiples ligas. Al iniciar sesión, Pitazo te muestra las ligas disponibles para que elijas en cuál entrar.</p>
+        </details>
+        <details>
+          <summary>¿Los jugadores y managers pagan algo?</summary>
+          <p>No. Solo el administrador del complejo paga la suscripción. Jugadores, managers, árbitros y patrocinadores acceden gratis, desde la web o la app.</p>
+        </details>
+        <details>
+          <summary>¿Funciona en cualquier celular?</summary>
+          <p>Sí. Hay una app nativa para iOS (App Store) y Android (Google Play). También puedes usar Pitazo desde el navegador de cualquier dispositivo.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si cancelo?</summary>
+          <p>Conservas el acceso hasta el final del periodo que ya pagaste. Tus datos no desaparecen de inmediato: te avisamos antes de cualquier eliminación.</p>
+        </details>
+        <details>
+          <summary>¿Quién ve la información de mi liga?</summary>
+          <p>Solo tú y las personas que tú invites. Cada liga opera en un espacio completamente separado. Puedes consultar los detalles en nuestro <a href="https://pitazo.globalappsuite.com.mx/Legal/Privacidad" style="color:var(--azul)">Aviso de Privacidad</a>.</p>
+        </details>
+        <details>
+          <summary>¿Tienen soporte si tengo problemas?</summary>
+          <p>Sí. Dentro de Pitazo encontrarás el centro de ayuda con guías paso a paso. Si necesitas algo más, puedes escribirnos directamente desde la plataforma o desde el formulario de contacto de esta página.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CONTACTO ═════════ -->
+  <section id="contacto" style="padding-top:0">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">¿Dudas?</span>
+        <h2>Escríbenos</h2>
+        <p>Cuéntanos qué necesitas o qué te gustaría que hiciera Pitazo. Te respondemos por correo.</p>
+      </div>
+      <div style="max-width:620px;margin:0 auto">
+        <form id="form-contacto" novalidate style="display:grid;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.75rem;">
+          <input type="hidden" name="origen" value="pitazo" />
+          <label style="display:grid;gap:.4rem;font-weight:700;font-size:.92rem;">Nombre<input type="text" name="nombre" autocomplete="name" required maxlength="100" style="font:inherit;border:1px solid #cfd4dc;border-radius:10px;padding:.8rem .95rem;width:100%;background:#fff;color:var(--text);" /></label>
+          <label style="display:grid;gap:.4rem;font-weight:700;font-size:.92rem;">Correo<input type="email" name="correo" autocomplete="email" required maxlength="150" style="font:inherit;border:1px solid #cfd4dc;border-radius:10px;padding:.8rem .95rem;width:100%;background:#fff;color:var(--text);" /></label>
+          <label style="display:grid;gap:.4rem;font-weight:700;font-size:.92rem;">Mensaje<textarea name="mensaje" required minlength="10" maxlength="3000" style="font:inherit;border:1px solid #cfd4dc;border-radius:10px;padding:.8rem .95rem;width:100%;background:#fff;color:var(--text);min-height:130px;resize:vertical;"></textarea></label>
+          <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true"><label>No llenar<input type="text" name="web" tabindex="-1" autocomplete="off" /></label></div>
+          <button type="submit" class="btn" style="font-family:inherit;cursor:pointer;">Enviar mensaje</button>
+          <p id="estado-form" role="status" aria-live="polite" style="min-height:1.4em;text-align:center;font-size:.95rem;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CIERRE ═════════ -->
+  <section class="cierre">
+    <div class="contenedor revelar">
+      <h2>Lleva tu liga al siguiente nivel</h2>
+      <p>Deja los grupos de WhatsApp y las hojas de cálculo atrás. Pitazo hace el trabajo pesado por ti.</p>
+      <a class="btn btn--blanco" href="https://pitazo.globalappsuite.com.mx/Account/Register">Empieza gratis →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div>© <span id="anio">2026</span> Pitazo · Un producto de <a href="https://www.globalappsuite.com.mx"><strong>GlobalAppSuite</strong></a></div>
+    <nav aria-label="Enlaces del pie">
+      <a href="https://pitazo.globalappsuite.com.mx/Legal/Terminos">Términos</a>
+      <a href="https://pitazo.globalappsuite.com.mx/Legal/Privacidad">Privacidad</a>
+      <a href="https://pitazo.globalappsuite.com.mx/Account/Login">Iniciar sesión</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="barra-movil" id="barra-movil">
+  <a class="btn" href="https://pitazo.globalappsuite.com.mx/Account/Register">Empieza gratis →</a>
+</div>
+
+<script>
+(function () {
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.revelar');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
+  } else {
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { obs.observe(el); });
+  }
+
+  var barra = document.getElementById('barra-movil');
+  var portada = document.querySelector('.portada');
+  if (barra && portada && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entradas) {
+      barra.classList.toggle('visible', !entradas[0].isIntersecting);
+    }, { threshold: 0 }).observe(portada);
+  }
+
+  var f = document.getElementById('form-contacto');
+  if (f) {
+    var estado = document.getElementById('estado-form');
+    var btn = f.querySelector('button[type=submit]');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = Object.fromEntries(new FormData(f).entries());
+      estado.className = ''; estado.textContent = '';
+      if (!f.checkValidity()) { estado.style.color = '#b3261e'; estado.textContent = 'Revisa que tu nombre, correo y mensaje estén completos.'; return; }
+      btn.disabled = true; estado.textContent = 'Enviando…';
+      fetch('/api/contacto', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (r) {
+          if (r.ok) { f.reset(); estado.style.color = '#137333'; estado.textContent = '¡Listo! Recibimos tu mensaje y te respondemos pronto.'; }
+          else { estado.style.color = '#b3261e'; estado.textContent = r.mensaje || 'No pudimos enviar tu mensaje. Intenta de nuevo.'; }
+        })
+        .catch(function () { estado.style.color = '#b3261e'; estado.textContent = 'No pudimos enviar tu mensaje. Intenta de nuevo.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
