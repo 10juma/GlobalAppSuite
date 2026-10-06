@@ -1,0 +1,11 @@
+# Visual Studio / macOS
+.vs/
+.vscode/
+.DS_Store
+._*
+Thumbs.db
+
+# Vercel
+.vercel/
+.env
+.env.*

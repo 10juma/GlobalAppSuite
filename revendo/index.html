@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Revendo — Controla tu negocio de limpieza desde el celular | 15 días gratis</title>
+<meta name="description" content="Inventario, ventas, compras, producción y reportes en un solo lugar. Hecho para quien vende productos de limpieza y hogar desde casa. Pruébalo 15 días gratis." />
+<meta name="author" content="Global App Suite" />
+<meta name="theme-color" content="#0f7a3d" />
+<link rel="canonical" href="https://www.globalappsuite.com.mx/revendo/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:site_name" content="Revendo" />
+<meta property="og:title" content="Revendo — Tu negocio de limpieza, ordenado desde el celular" />
+<meta property="og:description" content="Ventas, compras, inventario, producción y reparto en un solo lugar. 15 días gratis, después $49 MXN al mes." />
+<meta property="og:url" content="https://www.globalappsuite.com.mx/revendo/" />
+<meta property="og:image" content="https://www.globalappsuite.com.mx/revendo/img/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Revendo — Tu negocio de limpieza, ordenado desde el celular" />
+<meta name="twitter:description" content="Ventas, compras, inventario, producción y reparto en un solo lugar. 15 días gratis." />
+<meta name="twitter:image" content="https://www.globalappsuite.com.mx/revendo/img/og.jpg" />
+
+<link rel="icon" type="image/png" href="/revendo/img/favicon.png" />
+<link rel="apple-touch-icon" href="/revendo/img/apple-touch-icon.png" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #17181a;
+    --muted: #5f6672;
+    --border: #e5e7eb;
+    --green: #16a34a;
+    --green-dark: #0f7a3d;
+    --green-deep: #0f2e1a;
+    --green-soft: #ecfdf3;
+    --radius: 14px;
+    --sombra: 0 30px 70px -25px rgba(15, 46, 26, .38);
+    --fuente: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: var(--fuente);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .contenedor { width: min(1160px, 100% - 2.5rem); margin-inline: auto; }
+
+  :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+
+  /* ── Botones ───────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .95rem 1.6rem;
+    border-radius: 999px;
+    background: var(--green-dark);
+    color: #fff;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid var(--green-dark);
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    box-shadow: 0 10px 24px -10px rgba(15, 122, 61, .65);
+  }
+  .btn:hover { background: #0c6a35; transform: translateY(-2px); box-shadow: 0 16px 28px -12px rgba(15, 122, 61, .7); }
+  .btn:active { transform: translateY(0); }
+  .btn--claro { background: transparent; color: var(--text); border-color: var(--border); box-shadow: none; }
+  .btn--claro:hover { background: #fff; border-color: #c9ced6; box-shadow: none; }
+  .btn--blanco { background: #fff; color: var(--green-deep); border-color: #fff; box-shadow: none; }
+  .btn--blanco:hover { background: #ecfdf3; box-shadow: none; }
+  .btn--sm { padding: .6rem 1.15rem; font-size: .9rem; }
+
+  /* ── Encabezado ────────────────────────────────────────── */
+  .encabezado {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247, 247, 245, .9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .encabezado .contenedor { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 1rem; }
+  .marca { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; letter-spacing: -.02em; }
+  .marca img { width: 34px; height: 34px; border-radius: 9px; }
+  .menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  .menu a { text-decoration: none; font-size: .95rem; color: var(--muted); font-weight: 500; transition: color .15s; }
+  .menu a:hover { color: var(--text); }
+  .acciones { display: flex; align-items: center; gap: .75rem; }
+  .enlace-sesion { font-size: .92rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+  .enlace-sesion:hover { color: var(--text); }
+
+  /* ── Portada ───────────────────────────────────────────── */
+  .portada {
+    padding: 4.5rem 0 3.5rem;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(22, 163, 74, .16), transparent 70%),
+      radial-gradient(700px 380px at 0% 20%, rgba(22, 163, 74, .08), transparent 70%);
+  }
+  .portada-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+  .etiqueta {
+    display: inline-block;
+    padding: .35rem .85rem;
+    background: var(--green-soft);
+    color: var(--green-dark);
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+    font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+    margin-bottom: 1.25rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); line-height: 1.07; letter-spacing: -.035em; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--green-dark); }
+  .portada p.sub { margin-top: 1.25rem; font-size: 1.15rem; color: var(--muted); max-width: 34rem; }
+  .portada .botones { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+  .nota-precio { margin-top: 1.1rem; font-size: .86rem; color: var(--muted); max-width: 31rem; }
+
+  .marco {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(15, 46, 26, .14);
+    box-shadow: var(--sombra);
+    background: #fff;
+  }
+  .marco img { width: 100%; }
+  .portada .marco { animation: entrada .9s cubic-bezier(.2, .7, .2, 1) both; }
+
+  /* ── Secciones ─────────────────────────────────────────── */
+  section { padding: 5rem 0; }
+  .titulo-seccion { text-align: center; max-width: 42rem; margin: 0 auto 3rem; }
+  .titulo-seccion .etiqueta { margin-bottom: 1rem; }
+  h2 { font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1.15; letter-spacing: -.03em; font-weight: 800; }
+  .titulo-seccion p { margin-top: .9rem; color: var(--muted); font-size: 1.08rem; }
+
+  /* Dolores */
+  .dolores { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+  .tarjeta {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+  }
+  .tarjeta h3 { font-size: 1.1rem; line-height: 1.3; letter-spacing: -.01em; margin-bottom: .5rem; }
+  .tarjeta p { color: var(--muted); font-size: .98rem; }
+  .icono-emoji { font-size: 1.7rem; margin-bottom: .75rem; display: block; }
+
+  /* Funciones (filas alternadas) */
+  .funciones { background: var(--surface); border-block: 1px solid var(--border); }
+  .fila { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; padding: 2.25rem 0; }
+  .fila + .fila { border-top: 1px solid var(--border); }
+  .fila h3 { font-size: clamp(1.4rem, 2.8vw, 1.9rem); line-height: 1.2; letter-spacing: -.025em; margin-bottom: .75rem; }
+  .fila p { color: var(--muted); font-size: 1.05rem; }
+  .fila ul { list-style: none; margin-top: 1.1rem; display: grid; gap: .6rem; }
+  .fila li { position: relative; padding-left: 1.8rem; font-size: .98rem; }
+  .fila li::before {
+    content: "✓";
+    position: absolute; left: 0; top: .05rem;
+    width: 1.25rem; height: 1.25rem;
+    border-radius: 50%;
+    background: var(--green-soft); color: var(--green-dark);
+    font-size: .75rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Mini funciones */
+  .mini-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 3rem; }
+  .mini { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .mini strong { display: block; margin-bottom: .25rem; }
+  .mini span { color: var(--muted); font-size: .95rem; }
+
+  /* Pasos */
+  .pasos { display: grid; gap: 1.1rem; grid-template-columns: 1fr; counter-reset: paso; }
+  .paso { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; position: relative; }
+  .paso::before {
+    counter-increment: paso; content: counter(paso);
+    display: flex; align-items: center; justify-content: center;
+    width: 2.2rem; height: 2.2rem; border-radius: 50%;
+    background: var(--green-dark); color: #fff; font-weight: 800; margin-bottom: .9rem;
+  }
+  .paso h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+  .paso p { color: var(--muted); font-size: .97rem; }
+  .guia-visual { max-width: 860px; margin: 3rem auto 0; }
+
+  /* App móvil */
+  .app {
+    background: linear-gradient(135deg, var(--green-deep), #146a37 55%, var(--green));
+    color: #fff;
+  }
+  .app .contenedor { display: grid; gap: 1.75rem; grid-template-columns: 1fr; align-items: center; }
+  .app h2 { color: #fff; }
+  .app p { color: rgba(255, 255, 255, .85); font-size: 1.08rem; margin-top: 1rem; max-width: 36rem; }
+  .app ul { list-style: none; margin-top: 1.4rem; display: grid; gap: .6rem; }
+  .app li { padding-left: 1.7rem; position: relative; color: #fff; }
+  .app li::before { content: "✓"; position: absolute; left: 0; font-weight: 800; color: #86efac; }
+  .insignia-app {
+    display: inline-block; margin-top: 1.6rem;
+    padding: .55rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 999px;
+    font-size: .9rem; font-weight: 600;
+  }
+
+  /* Precio */
+  .precio-caja {
+    max-width: 520px; margin: 0 auto;
+    background: var(--surface);
+    border: 2px solid var(--green-dark);
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    text-align: center;
+    box-shadow: var(--sombra);
+  }
+  .precio-caja .cantidad { font-size: 3.4rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+  .precio-caja .cantidad small { font-size: 1.05rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .precio-caja .gratis { display: inline-block; margin: .9rem 0 1.4rem; background: var(--green-soft); color: var(--green-dark); border-radius: 999px; padding: .3rem .9rem; font-weight: 700; font-size: .9rem; }
+  .precio-caja ul { list-style: none; text-align: left; display: grid; gap: .6rem; margin-bottom: 1.8rem; }
+  .precio-caja li { padding-left: 1.7rem; position: relative; font-size: .98rem; }
+  .precio-caja li::before { content: "✓"; position: absolute; left: 0; color: var(--green-dark); font-weight: 800; }
+  .precio-caja .btn { width: 100%; }
+  .letra-chica { margin-top: 1rem; font-size: .83rem; color: var(--muted); }
+
+  /* Preguntas */
+  .preguntas { max-width: 780px; margin: 0 auto; display: grid; gap: .75rem; }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  summary {
+    cursor: pointer; list-style: none;
+    padding: 1.1rem 1.4rem;
+    font-weight: 700; font-size: 1.02rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 1.5rem; line-height: 1; color: var(--green-dark); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 1.4rem 1.2rem; color: var(--muted); }
+
+  /* Contacto */
+  .contacto-caja { max-width: 620px; margin: 0 auto; }
+  .formulario { display: grid; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 1.75rem; }
+  .formulario label { display: grid; gap: .4rem; font-weight: 700; font-size: .92rem; }
+  .formulario input, .formulario textarea {
+    font: inherit; font-weight: 400; color: var(--text);
+    border: 1px solid #cfd4dc; border-radius: 10px; padding: .8rem .95rem; width: 100%; background: #fff;
+  }
+  .formulario textarea { min-height: 130px; resize: vertical; }
+  .formulario input:focus, .formulario textarea:focus { outline: 3px solid rgba(22, 163, 74, .35); border-color: var(--green-dark); }
+  .formulario .trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .formulario button { font-family: inherit; cursor: pointer; }
+  .formulario button:disabled { opacity: .6; cursor: wait; transform: none; }
+  .estado-form { min-height: 1.4em; text-align: center; font-size: .95rem; }
+  .estado-form.ok { color: #137333; font-weight: 600; }
+  .estado-form.mal { color: #b3261e; font-weight: 600; }
+
+  /* Cierre */
+  .cierre { text-align: center; background: var(--green-deep); color: #fff; }
+  .cierre h2 { color: #fff; }
+  .cierre p { margin: 1rem auto 2rem; color: rgba(255, 255, 255, .8); max-width: 34rem; font-size: 1.08rem; }
+
+  /* Pie */
+  .pie { padding: 2.5rem 0; font-size: .9rem; color: var(--muted); }
+  .pie .contenedor { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; }
+  .pie nav { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
+  .pie a { text-decoration: none; }
+  .pie a:hover { text-decoration: underline; }
+
+  /* Barra fija de móvil */
+  .barra-movil {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    transform: translateY(110%);
+    transition: transform .3s ease;
+  }
+  .barra-movil.visible { transform: translateY(0); }
+  .barra-movil .btn { width: 100%; padding: .85rem 1rem; }
+
+  /* ── Transiciones al hacer scroll ─────────────────────── */
+  .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+  .revelar.visible { opacity: 1; transform: none; }
+  @keyframes entrada { from { opacity: 0; transform: translateY(28px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .revelar { opacity: 1; transform: none; transition: none; }
+    .portada .marco { animation: none; }
+    .btn, .barra-movil { transition: none; }
+  }
+
+  /* ── Pantallas medianas y grandes ─────────────────────── */
+  @media (min-width: 720px) {
+    .dolores, .pasos { grid-template-columns: repeat(3, 1fr); }
+    .mini-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .portada { padding: 5.5rem 0 4.5rem; }
+    .portada-grid { grid-template-columns: 1fr 1.1fr; }
+    .fila { grid-template-columns: 1fr 1.15fr; gap: 3.5rem; padding: 3rem 0; }
+    .fila--invertida .fila-texto { order: 2; }
+    .app .contenedor { grid-template-columns: 1.1fr .9fr; gap: 3rem; }
+    .barra-movil { display: none; }
+  }
+  @media (max-width: 899px) {
+    .menu { display: none; }
+    .enlace-sesion { display: none; }
+    section { padding: 3.75rem 0; }
+    .pie { padding-bottom: 5.5rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="marca" href="#inicio" aria-label="Revendo, ir al inicio">
+      <img src="/revendo/img/icono-192.png" width="34" height="34" alt="" />Revendo
+    </a>
+    <ul class="menu">
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#como-empezar">Cómo empezar</a></li>
+      <li><a href="#precio">Precio</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="acciones">
+      <a class="enlace-sesion" href="https://revendo.globalappsuite.com.mx/Account/Login">Iniciar sesión</a>
+      <a class="btn btn--sm" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis</a>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ═════════ PORTADA ═════════ -->
+  <div class="portada">
+    <div class="contenedor portada-grid">
+      <div>
+        <span class="etiqueta">Para negocios de limpieza y hogar</span>
+        <h1>Tu negocio de limpieza, <em>ordenado desde el celular.</em></h1>
+        <p class="sub">Revendo lleva tus ventas, compras, inventario y reparto en un solo lugar. Sabe cuánto tienes, cuánto vendes y cuánto ganas, sin libretas ni hojas de cálculo.</p>
+        <div class="botones">
+          <a class="btn" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis 15 días</a>
+          <a class="btn btn--claro" href="#funciones">Ver cómo funciona</a>
+        </div>
+        <p class="nota-precio">15 días gratis. Después $49 MXN al mes. Pedimos tarjeta para activar la prueba, pero no se cobra nada durante los 15 días. Si cancelas antes de que termine, no pagas.</p>
+      </div>
+      <div class="marco">
+        <img src="/revendo/img/dashboard-1600.webp"
+             srcset="/revendo/img/dashboard-800.webp 800w, /revendo/img/dashboard-1600.webp 1600w"
+             sizes="(min-width: 900px) 600px, 92vw"
+             width="1600" height="1128" fetchpriority="high" decoding="async"
+             alt="Panel de Revendo con las ventas, compras y gastos del mes y el inventario actual" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ PROBLEMA ═════════ -->
+  <section>
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <h2>¿Te suena familiar?</h2>
+        <p>Vender desde casa es un buen negocio, hasta que el control se te sale de las manos.</p>
+      </div>
+      <div class="dolores">
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">📦</span>
+          <h3>"No sé cuánto me queda"</h3>
+          <p>Vendes y vendes, y hasta que se acaba el cloro te das cuenta. Con Revendo, cada venta descuenta tu inventario sola.</p>
+        </div>
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">📝</span>
+          <h3>"Mis ventas están en una libreta y en WhatsApp"</h3>
+          <p>Registra cada venta en segundos, con su cliente, su canal y si ya la pagaron. Todo queda en un solo lugar.</p>
+        </div>
+        <div class="tarjeta revelar">
+          <span class="icono-emoji" aria-hidden="true">💰</span>
+          <h3>"No sé si de verdad estoy ganando"</h3>
+          <p>Ve tus ventas, compras y gastos por periodo, y tu margen estimado, sin sacar cuentas a mano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ FUNCIONES ═════════ -->
+  <section class="funciones" id="funciones">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Todo en un solo lugar</span>
+        <h2>Lo que necesitas para llevar tu negocio</h2>
+        <p>Sin módulos extra ni precios escondidos: todo viene incluido.</p>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>Registra una venta en segundos</h3>
+          <p>Elige el cliente (o déjalo vacío), agrega los productos y listo: tu inventario baja solo. Mientras capturas, Revendo te dice cuánto tienes disponible.</p>
+          <ul>
+            <li>Ves cuánto hay y cuánto quedará, antes de guardar</li>
+            <li>Marca si ya se pagó y si ya se entregó</li>
+            <li>Comparte el ticket de la venta por WhatsApp desde la app móvil</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/revendo/img/venta-1600.webp" srcset="/revendo/img/venta-800.webp 800w, /revendo/img/venta-1600.webp 1600w"
+               sizes="(min-width: 900px) 600px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+               alt="Formulario Nueva venta mostrando cuánto producto hay disponible y cuánto quedará" />
+        </div>
+      </div>
+
+      <div class="fila fila--invertida revelar">
+        <div class="fila-texto">
+          <h3>Siempre sabes cuánto tienes</h3>
+          <p>Tus existencias por producto y por almacén, siempre al día con cada compra, producción y venta.</p>
+          <ul>
+            <li>Varios almacenes: tu bodega, tu tienda o hasta tu coche</li>
+            <li>Marca el stock mínimo y ve qué se está acabando</li>
+            <li>Carga lo que ya tienes en minutos con "Ajustar inventario"</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/revendo/img/existencias-1600.webp" srcset="/revendo/img/existencias-800.webp 800w, /revendo/img/existencias-1600.webp 1600w"
+               sizes="(min-width: 900px) 600px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+               alt="Lista de existencias por producto y almacén" />
+        </div>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>¿Fabricas tus productos? También</h3>
+          <p>Si preparas tu propio cloro, jabón o desengrasante, define la receta una vez y Revendo hace las cuentas cada vez que produces.</p>
+          <ul>
+            <li>Separa insumos, productos que fabricas y productos de reventa</li>
+            <li>Al producir, se descuentan los insumos y suben las existencias</li>
+            <li>Si solo revendes, ignora esta parte: es opcional</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/revendo/img/produccion-1600.webp" srcset="/revendo/img/produccion-800.webp 800w, /revendo/img/produccion-1600.webp 1600w"
+               sizes="(min-width: 900px) 600px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+               alt="Historial de producciones con los insumos que se descontaron" />
+        </div>
+      </div>
+
+      <div class="fila fila--invertida revelar">
+        <div class="fila-texto">
+          <h3>Cada compra, anotada</h3>
+          <p>Registra lo que le compras a tus proveedores y tu inventario sube automáticamente. Después ves cuánto le has comprado a cada quien.</p>
+          <ul>
+            <li>Proveedores con su contacto y su historial</li>
+            <li>El costo de cada producto queda registrado</li>
+            <li>Corrige una compra y las existencias se ajustan solas</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/revendo/img/compras-1600.webp" srcset="/revendo/img/compras-800.webp 800w, /revendo/img/compras-1600.webp 1600w"
+               sizes="(min-width: 900px) 600px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+               alt="Lista de compras con su proveedor, almacén y total" />
+        </div>
+      </div>
+
+      <div class="fila revelar">
+        <div class="fila-texto">
+          <h3>Mira cuánto estás ganando</h3>
+          <p>Reportes de ventas, compras y gastos por el periodo que elijas, con su gráfica y sus productos más vendidos.</p>
+          <ul>
+            <li>Ingresos, ticket promedio y margen estimado</li>
+            <li>Ventas por día para ver tus mejores fechas</li>
+            <li>Filtra por cliente, proveedor, categoría o por quién registró</li>
+          </ul>
+        </div>
+        <div class="marco">
+          <img src="/revendo/img/reportes-1600.webp" srcset="/revendo/img/reportes-800.webp 800w, /revendo/img/reportes-1600.webp 1600w"
+               sizes="(min-width: 900px) 600px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+               alt="Reporte de ventas con ingresos, ticket promedio, margen y ventas por día" />
+        </div>
+      </div>
+
+      <div class="mini-grid">
+        <div class="mini revelar"><strong>Clientes y listas de precios</strong><span>Guarda a tus clientes y maneja precios distintos, por ejemplo de mayoreo.</span></div>
+        <div class="mini revelar"><strong>Rutas de reparto</strong><span>Asigna cada entrega a un repartidor, que ve la dirección del cliente.</span></div>
+        <div class="mini revelar"><strong>Equipo con roles</strong><span>Administrador, vendedor y repartidor: cada quien ve solo lo que necesita.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CÓMO EMPEZAR ═════════ -->
+  <section id="como-empezar">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Fácil de arrancar</span>
+        <h2>Empieza en 3 pasos</h2>
+        <p>No necesitas saber de sistemas. Revendo te lleva de la mano.</p>
+      </div>
+      <div class="pasos">
+        <div class="paso revelar">
+          <h3>Crea tu cuenta</h3>
+          <p>Registra tu negocio, confirma tu correo y activa tus 15 días gratis.</p>
+        </div>
+        <div class="paso revelar">
+          <h3>Sigue la Guía de inicio</h3>
+          <p>Te dice qué hacer y en qué orden: tu almacén, tus productos, tus proveedores y tu inventario.</p>
+        </div>
+        <div class="paso revelar">
+          <h3>Registra tu primera venta</h3>
+          <p>Y desde ahí, tus existencias y tus reportes se actualizan solos.</p>
+        </div>
+      </div>
+      <div class="marco guia-visual revelar">
+        <img src="/revendo/img/guia-1600.webp" srcset="/revendo/img/guia-800.webp 800w, /revendo/img/guia-1600.webp 1600w"
+             sizes="(min-width: 900px) 860px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+             alt="Guía de inicio de Revendo con los pasos para dejar el negocio listo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ APP MÓVIL ═════════ -->
+  <section class="app">
+    <div class="contenedor">
+      <div class="revelar">
+        <h2>Y también en tu celular</h2>
+        <p>Registra ventas, consulta tu inventario y revisa tus reportes desde donde estés. Tus repartidores ven sus entregas con la dirección del cliente.</p>
+        <ul>
+          <li>Registra una venta en el momento, aunque estés en la calle</li>
+          <li>Comparte el ticket por WhatsApp con el logo de tu negocio</li>
+          <li>Consulta existencias, compras y gastos</li>
+        </ul>
+        <!-- ACTUALIZAR: cuando las apps estén publicadas, cambiar esta insignia por los botones de Google Play y App Store. -->
+        <span class="insignia-app">App móvil para Android y iOS · Próximamente en Google Play y App Store</span>
+      </div>
+      <div class="marco revelar">
+        <img src="/revendo/img/venta-1600.webp" srcset="/revendo/img/venta-800.webp 800w, /revendo/img/venta-1600.webp 1600w"
+             sizes="(min-width: 900px) 480px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
+             alt="Registro de una venta en Revendo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ PRECIO ═════════ -->
+  <section id="precio">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">Precio claro</span>
+        <h2>Un solo plan, todo incluido</h2>
+        <p>Sin niveles ni cargos extra por usar más funciones.</p>
+      </div>
+      <div class="precio-caja revelar">
+        <div class="cantidad">$49 <small>MXN al mes</small></div>
+        <span class="gratis">Los primeros 15 días, gratis</span>
+        <ul>
+          <li>Inventario y existencias por almacén</li>
+          <li>Ventas, compras, gastos y proveedores</li>
+          <li>Producción con recetas</li>
+          <li>Reportes y filtros por usuario</li>
+          <li>Rutas de reparto y equipo con roles</li>
+          <li>App móvil para Android y iOS</li>
+          <li>Soporte dentro de la plataforma</li>
+        </ul>
+        <a class="btn" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis 15 días</a>
+        <p class="letra-chica">Pedimos tarjeta para activar la prueba; no se cobra nada durante los 15 días. Si no cancelas antes, al terminar se cobran $49 MXN al mes. Cancela cuando quieras.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ PREGUNTAS ═════════ -->
+  <section id="preguntas" style="padding-top:0">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="preguntas revelar">
+        <details>
+          <summary>¿Necesito tarjeta para la prueba?</summary>
+          <p>Sí. La pedimos para activar los 15 días gratis, pero no se te cobra nada durante la prueba. Si cancelas antes de que termine, no pagas.</p>
+        </details>
+        <details>
+          <summary>¿Puedo cancelar cuando quiera?</summary>
+          <p>Sí, desde la sección Suscripción de tu cuenta. Si cancelas con una suscripción en curso, conservas el acceso hasta el final del periodo que ya pagaste.</p>
+        </details>
+        <details>
+          <summary>¿Sirve si solo revendo y no fabrico?</summary>
+          <p>Claro. La producción con recetas es opcional: si solo compras y revendes, solo usas el inventario, las compras y las ventas.</p>
+        </details>
+        <details>
+          <summary>¿Funciona en el celular?</summary>
+          <p>Sí. Puedes usar Revendo desde el navegador de cualquier celular o computadora, y además hay una app móvil para Android y iOS.</p>
+        </details>
+        <details>
+          <summary>¿Puedo darle acceso a mi equipo?</summary>
+          <p>Sí. Agrega usuarios como administrador, vendedor o repartidor. Cada rol ve solo lo que necesita para trabajar.</p>
+        </details>
+        <details>
+          <summary>¿Quién ve la información de mi negocio?</summary>
+          <p>Solo tu negocio. Cada negocio ve únicamente sus propios datos. Puedes revisar los detalles en el <a href="https://revendo.globalappsuite.com.mx/Legal/Privacidad">Aviso de Privacidad</a>.</p>
+        </details>
+        <details>
+          <summary>¿Cómo se paga?</summary>
+          <p>Con tarjeta de crédito o débito. El pago lo procesa Stripe, y Revendo no guarda los datos completos de tu tarjeta.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CONTACTO ═════════ -->
+  <section id="contacto" style="padding-top:0">
+    <div class="contenedor">
+      <div class="titulo-seccion revelar">
+        <span class="etiqueta">¿Dudas?</span>
+        <h2>Escríbenos</h2>
+        <p>Cuéntanos qué necesitas o qué te gustaría que hiciera Revendo. Te respondemos por correo.</p>
+      </div>
+      <div class="contacto-caja revelar">
+        <form class="formulario" id="form-contacto" novalidate>
+          <input type="hidden" name="origen" value="revendo" />
+          <label>Nombre<input type="text" name="nombre" autocomplete="name" required maxlength="100" /></label>
+          <label>Correo<input type="email" name="correo" autocomplete="email" required maxlength="150" /></label>
+          <label>Mensaje<textarea name="mensaje" required minlength="10" maxlength="3000"></textarea></label>
+          <div class="trampa" aria-hidden="true"><label>No llenar<input type="text" name="web" tabindex="-1" autocomplete="off" /></label></div>
+          <button type="submit" class="btn">Enviar mensaje</button>
+          <p class="estado-form" id="estado-form" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CIERRE ═════════ -->
+  <section class="cierre">
+    <div class="contenedor revelar">
+      <h2>Ordena tu negocio desde hoy</h2>
+      <p>Pruébalo 15 días gratis y deja las libretas atrás.</p>
+      <a class="btn btn--blanco" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis 15 días</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div>© <span id="anio">2026</span> Revendo · Un producto de <a href="https://www.globalappsuite.com.mx"><strong>GlobalAppSuite</strong></a></div>
+    <nav aria-label="Enlaces del pie">
+      <a href="https://revendo.globalappsuite.com.mx/Legal/Terminos">Términos</a>
+      <a href="https://revendo.globalappsuite.com.mx/Legal/Privacidad">Privacidad</a>
+      <a href="https://revendo.globalappsuite.com.mx/Account/Login">Iniciar sesión</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Barra fija con el botón, solo en celular, después de pasar la portada -->
+<div class="barra-movil" id="barra-movil">
+  <a class="btn" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis 15 días</a>
+</div>
+
+<script>
+  (function () {
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.revelar');
+
+    // Aparición suave al hacer scroll; sin animaciones si el dispositivo las tiene desactivadas.
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('visible'); });
+    } else {
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (el) { obs.observe(el); });
+    }
+
+    // La barra del botón aparece cuando la portada ya salió de la pantalla.
+    var barra = document.getElementById('barra-movil');
+    var portada = document.querySelector('.portada');
+    if (barra && portada && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        barra.classList.toggle('visible', !entradas[0].isIntersecting);
+      }, { threshold: 0 }).observe(portada);
+    }
+
+    // Formulario de contacto: se envía a /api/contacto (Resend), sin recargar la página.
+    var f = document.getElementById('form-contacto');
+    if (f) {
+      var estado = document.getElementById('estado-form');
+      var btn = f.querySelector('button[type=submit]');
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var d = Object.fromEntries(new FormData(f).entries());
+        estado.className = 'estado-form'; estado.textContent = '';
+        if (!f.checkValidity()) { estado.className = 'estado-form mal'; estado.textContent = 'Revisa que tu nombre, correo y mensaje estén completos.'; return; }
+        btn.disabled = true; estado.textContent = 'Enviando…';
+        fetch('/api/contacto', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+          .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+          .then(function (r) {
+            if (r.ok) { f.reset(); estado.className = 'estado-form ok'; estado.textContent = '¡Listo! Recibimos tu mensaje y te respondemos pronto.'; }
+            else { estado.className = 'estado-form mal'; estado.textContent = r.mensaje || 'No pudimos enviar tu mensaje. Intenta de nuevo en un momento.'; }
+          })
+          .catch(function () { estado.className = 'estado-form mal'; estado.textContent = 'No pudimos enviar tu mensaje. Intenta de nuevo en un momento.'; })
+          .then(function () { btn.disabled = false; });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

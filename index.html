@@ -278,6 +278,28 @@
     .contact { padding: 3rem 1.5rem; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   }
+
+  /* Tarjeta de portafolio enlazada */
+  a.project-card { display: block; color: inherit; text-decoration: none; }
+  .project-link { display: inline-block; margin-top: 1rem; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--text); }
+
+  /* Formulario de contacto */
+  .contact-inner { max-width: 640px; }
+  .contact-form { text-align: left; display: grid; gap: 1rem; margin-bottom: 1.75rem; }
+  .contact-form label { display: grid; gap: 0.4rem; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--text); }
+  .contact-form input, .contact-form textarea {
+    font: inherit; font-size: 15px; font-weight: 400; letter-spacing: 0; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border-dark); border-radius: 3px; padding: 0.8rem 1rem; width: 100%;
+  }
+  .contact-form textarea { min-height: 130px; resize: vertical; }
+  .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--text); outline-offset: 1px; }
+  .contact-form .trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .contact-form button { font: inherit; cursor: pointer; justify-content: center; }
+  .contact-form button:disabled { opacity: 0.55; cursor: wait; }
+  .contact-estado { min-height: 1.4em; font-size: 13px !important; margin: 0 !important; text-align: center; }
+  .contact-estado.ok { color: #137333; }
+  .contact-estado.mal { color: #b3261e; }
+  .contact-o { margin-bottom: 1rem !important; }
 </style>
 </head>
 <body>
@@ -404,6 +426,20 @@
           </div>
         </div>
       </div>
+      <a class="project-card" href="/revendo/">
+        <div class="project-header">
+          <p class="project-type">Producto propio · SaaS · Web y móvil</p>
+          <h3 class="project-title">Revendo: control para negocios de limpieza y hogar</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-problem"><strong>Problema:</strong> Quien vende o fabrica productos de limpieza desde casa lleva inventario, ventas y compras en libretas y WhatsApp, sin saber cuánto tiene ni cuánto gana.</p>
+          <p class="project-problem"><strong>Solución:</strong> Plataforma web y app móvil con inventario por almacén, ventas, compras, producción con recetas, rutas de reparto y reportes. 15 días gratis.</p>
+          <div class="project-stack">
+            <span>ASP.NET Core</span><span>Flutter</span><span>SQL Server</span><span>Stripe</span>
+          </div>
+          <span class="project-link">Conocer Revendo →</span>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -495,8 +531,17 @@
     <p class="section-label" style="justify-content:center; margin-bottom:1.5rem;"><span aria-hidden="true">✉</span> Contacto</p>
     <h2>¿Tienes un <em>proyecto?</em></h2>
     <p>Cuéntanos qué necesitas. Respondemos en menos de 24 horas en días hábiles.</p>
+    <form class="contact-form" id="form-contacto" novalidate>
+      <input type="hidden" name="origen" value="sitio" />
+      <label>Nombre<input type="text" name="nombre" autocomplete="name" required maxlength="100" /></label>
+      <label>Correo<input type="email" name="correo" autocomplete="email" required maxlength="150" /></label>
+      <label>¿Qué necesitas?<textarea name="mensaje" required minlength="10" maxlength="3000"></textarea></label>
+      <div class="trampa" aria-hidden="true"><label>No llenar<input type="text" name="web" tabindex="-1" autocomplete="off" /></label></div>
+      <button type="submit" class="contact-link primary"><span aria-hidden="true">✉</span> Enviar mensaje</button>
+      <p class="contact-estado" id="contacto-estado" role="status" aria-live="polite"></p>
+    </form>
+    <p class="contact-o">O escríbenos directo:</p>
     <div class="contact-links">
-      <a href="mailto:contacto@globalappsuite.com.mx" class="contact-link primary"><span aria-hidden="true">✉</span> contacto@globalappsuite.com.mx</a>
       <a href="https://wa.me/527751051542" class="contact-link"><span aria-hidden="true">💬</span> WhatsApp →</a>
     </div>
   </div>
@@ -509,5 +554,28 @@
   <span class="footer-loc">📍 Guadalajara, Jal., México</span>
 </footer>
 
+<script>
+  (function () {
+    var f = document.getElementById('form-contacto');
+    if (!f) return;
+    var estado = document.getElementById('contacto-estado');
+    var btn = f.querySelector('button[type=submit]');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = Object.fromEntries(new FormData(f).entries());
+      estado.className = 'contact-estado'; estado.textContent = '';
+      if (!f.checkValidity()) { estado.className = 'contact-estado mal'; estado.textContent = 'Revisa que tu nombre, correo y mensaje estén completos.'; return; }
+      btn.disabled = true; estado.textContent = 'Enviando…';
+      fetch('/api/contacto', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (r) {
+          if (r.ok) { f.reset(); estado.className = 'contact-estado ok'; estado.textContent = '¡Listo! Recibimos tu mensaje y te respondemos pronto.'; }
+          else { estado.className = 'contact-estado mal'; estado.textContent = r.mensaje || 'No pudimos enviar tu mensaje. Escríbenos por WhatsApp.'; }
+        })
+        .catch(function () { estado.className = 'contact-estado mal'; estado.textContent = 'No pudimos enviar tu mensaje. Escríbenos por WhatsApp.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
 </body>
 </html>
