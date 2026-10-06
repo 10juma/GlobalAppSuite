@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Revendo — Controla tu negocio de limpieza desde el celular | 15 días gratis</title>
-<meta name="description" content="Inventario, ventas, compras, producción y reportes en un solo lugar. Hecho para quien vende productos de limpieza y hogar desde casa. Pruébalo 15 días gratis." />
+<title>Revendo — Inventario, ventas y compras desde el celular | 15 días gratis</title>
+<meta name="description" content="Inventario, ventas, compras, producción y reportes en un solo lugar. Para negocios que compran, producen o revenden productos: abarrotes, cosméticos, repostería, limpieza y más. Pruébalo 15 días gratis." />
 <meta name="author" content="Global App Suite" />
 <meta name="theme-color" content="#0f7a3d" />
 <link rel="canonical" href="https://www.globalappsuite.com.mx/revendo/" />
@@ -12,14 +12,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_MX" />
 <meta property="og:site_name" content="Revendo" />
-<meta property="og:title" content="Revendo — Tu negocio de limpieza, ordenado desde el celular" />
+<meta property="og:title" content="Revendo — Tu negocio, ordenado desde el celular" />
 <meta property="og:description" content="Ventas, compras, inventario, producción y reparto en un solo lugar. 15 días gratis, después $49 MXN al mes." />
 <meta property="og:url" content="https://www.globalappsuite.com.mx/revendo/" />
 <meta property="og:image" content="https://www.globalappsuite.com.mx/revendo/img/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Revendo — Tu negocio de limpieza, ordenado desde el celular" />
+<meta name="twitter:title" content="Revendo — Tu negocio, ordenado desde el celular" />
 <meta name="twitter:description" content="Ventas, compras, inventario, producción y reparto en un solo lugar. 15 días gratis." />
 <meta name="twitter:image" content="https://www.globalappsuite.com.mx/revendo/img/og.jpg" />
 
@@ -238,6 +238,12 @@
   details[open] summary::after { transform: rotate(45deg); }
   details p { padding: 0 1.4rem 1.2rem; color: var(--muted); }
 
+  /* Rubros */
+  .rubros { padding: 2.25rem 0; border-block: 1px solid var(--border); background: var(--surface); }
+  .rubros p { text-align: center; font-weight: 700; margin-bottom: 1rem; }
+  .rubros ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+  .rubros li { padding: .45rem 1rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); font-size: .92rem; color: var(--muted); }
+
   /* Contacto */
   .contacto-caja { max-width: 620px; margin: 0 auto; }
   .formulario { display: grid; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 1.75rem; }
@@ -341,8 +347,8 @@
   <div class="portada">
     <div class="contenedor portada-grid">
       <div>
-        <span class="etiqueta">Para negocios de limpieza y hogar</span>
-        <h1>Tu negocio de limpieza, <em>ordenado desde el celular.</em></h1>
+        <span class="etiqueta">Para negocios que compran, producen y venden</span>
+        <h1>Tu negocio, <em>ordenado desde el celular.</em></h1>
         <p class="sub">Revendo lleva tus ventas, compras, inventario y reparto en un solo lugar. Sabe cuánto tienes, cuánto vendes y cuánto ganas, sin libretas ni hojas de cálculo.</p>
         <div class="botones">
           <a class="btn" href="https://revendo.globalappsuite.com.mx/Account/Register">Empieza gratis 15 días</a>
@@ -360,18 +366,35 @@
     </div>
   </div>
 
+  <!-- ═════════ RUBROS ═════════ -->
+  <div class="rubros">
+    <div class="contenedor">
+      <p>Si manejas producto, Revendo es para ti</p>
+      <ul>
+        <li>Abarrotes y tiendas</li>
+        <li>Limpieza y hogar</li>
+        <li>Cosméticos y cuidado personal</li>
+        <li>Repostería y alimentos</li>
+        <li>Papelería y regalos</li>
+        <li>Ropa y accesorios</li>
+        <li>Distribuidores</li>
+        <li>Y cualquier negocio que compre y venda</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- ═════════ PROBLEMA ═════════ -->
   <section>
     <div class="contenedor">
       <div class="titulo-seccion revelar">
         <h2>¿Te suena familiar?</h2>
-        <p>Vender desde casa es un buen negocio, hasta que el control se te sale de las manos.</p>
+        <p>Vender es un buen negocio, hasta que el control se te sale de las manos.</p>
       </div>
       <div class="dolores">
         <div class="tarjeta revelar">
           <span class="icono-emoji" aria-hidden="true">📦</span>
           <h3>"No sé cuánto me queda"</h3>
-          <p>Vendes y vendes, y hasta que se acaba el cloro te das cuenta. Con Revendo, cada venta descuenta tu inventario sola.</p>
+          <p>Vendes y vendes, y hasta que se acaba tu producto estrella te das cuenta. Con Revendo, cada venta descuenta tu inventario sola.</p>
         </div>
         <div class="tarjeta revelar">
           <span class="icono-emoji" aria-hidden="true">📝</span>
@@ -433,7 +456,7 @@
       <div class="fila revelar">
         <div class="fila-texto">
           <h3>¿Fabricas tus productos? También</h3>
-          <p>Si preparas tu propio cloro, jabón o desengrasante, define la receta una vez y Revendo hace las cuentas cada vez que produces.</p>
+          <p>Si preparas tus propios productos (jabones, cremas, salsas, pasteles…), define la receta una vez y Revendo hace las cuentas cada vez que produces.</p>
           <ul>
             <li>Separa insumos, productos que fabricas y productos de reventa</li>
             <li>Al producir, se descuentan los insumos y suben las existencias</li>
