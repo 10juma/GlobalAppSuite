@@ -7,6 +7,7 @@ const DESTINO = process.env.CONTACTO_PARA || 'juanmanuel@globalappsuite.com.mx';
 const REMITENTE = process.env.CONTACTO_DE || 'Global App Suite <revendo@globalappsuite.com.mx>';
 const ORIGENES = {
   revendo: 'Revendo',
+  pitazo: 'Pitazo',
   sitio: 'Sitio GlobalAppSuite',
 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
