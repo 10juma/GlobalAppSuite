@@ -204,6 +204,15 @@
     border-radius: 999px;
     font-size: .9rem; font-weight: 600;
   }
+  .app-telefono {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .app-telefono img {
+    width: 260px; max-width: 80vw;
+    border-radius: 42px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, .45), 0 0 0 8px rgba(255,255,255,.12);
+    display: block;
+  }
 
   /* Precio */
   .precio-caja {
@@ -556,10 +565,9 @@
         <!-- ACTUALIZAR: cuando las apps estén publicadas, cambiar esta insignia por los botones de Google Play y App Store. -->
         <span class="insignia-app">App móvil para Android y iOS · Próximamente en Google Play y App Store</span>
       </div>
-      <div class="marco revelar">
-        <img src="/revendo/img/venta-1600.webp" srcset="/revendo/img/venta-800.webp 800w, /revendo/img/venta-1600.webp 1600w"
-             sizes="(min-width: 900px) 480px, 92vw" width="1600" height="1128" loading="lazy" decoding="async"
-             alt="Registro de una venta en Revendo" />
+      <div class="app-telefono revelar">
+        <img src="/revendo/img/app-movil.webp" width="924" height="2000" loading="lazy" decoding="async"
+             alt="Pantalla de inicio de la app móvil de Revendo en iPhone" />
       </div>
     </div>
   </section>

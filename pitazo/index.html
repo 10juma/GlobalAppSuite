@@ -205,6 +205,15 @@
   .app ul { list-style: none; margin-top: 1.4rem; display: grid; gap: .6rem; }
   .app li { padding-left: 1.7rem; position: relative; color: #fff; }
   .app li::before { content: "✓"; position: absolute; left: 0; font-weight: 800; color: #93c5fd; }
+  .app-telefono {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .app-telefono img {
+    width: 260px; max-width: 80vw;
+    border-radius: 42px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, .45), 0 0 0 8px rgba(255,255,255,.12);
+    display: block;
+  }
   .app-tiendas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
   .tienda-btn {
     display: inline-flex; align-items: center; gap: .6rem;
@@ -599,10 +608,9 @@
           <li>Soporte para múltiples ligas con el mismo correo</li>
         </ul>
       </div>
-      <div class="marco revelar">
-        <img src="/pitazo/img/app.png"
-             width="800" height="1100" loading="lazy" decoding="async"
-             alt="App de Pitazo en iPhone mostrando el marcador en vivo y el dashboard del jugador" />
+      <div class="app-telefono revelar">
+        <img src="/pitazo/img/app-movil.webp" width="924" height="2000" loading="lazy" decoding="async"
+             alt="Pantalla de inicio de la app móvil de Pitazo en iPhone" />
       </div>
     </div>
   </section>
