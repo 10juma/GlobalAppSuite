@@ -1,9 +1,12 @@
-// Recibe el formulario de contacto (sitio principal y /revendo) y lo envía por Resend.
+// Recibe el formulario de contacto (sitio principal, /revendo y /pitazo) y lo envía por Resend.
 // Variables de entorno en Vercel:
 //   RESEND_API_KEY   (obligatoria)  llave de Resend; nunca va en el repositorio
-//   CONTACTO_PARA    (opcional)     destino; por defecto juanmanuel@globalappsuite.com.mx
+//   CONTACTO_PARA    (opcional)     uno o varios destinos separados por coma;
+//                                   por defecto juanmanuel@globalappsuite.com.mx
 //   CONTACTO_DE      (opcional)     remitente verificado en Resend; por defecto el de Revendo
-const DESTINO = process.env.CONTACTO_PARA || 'juanmanuel@globalappsuite.com.mx';
+const DESTINOS = (process.env.CONTACTO_PARA || 'juanmanuel@globalappsuite.com.mx')
+  .split(',').map(s => s.trim()).filter(Boolean);
+const DESTINO = DESTINOS; // alias para el campo `to` de Resend (acepta array)
 const REMITENTE = process.env.CONTACTO_DE || 'Global App Suite <revendo@globalappsuite.com.mx>';
 const ORIGENES = {
   revendo: 'Revendo',
